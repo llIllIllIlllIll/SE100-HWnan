@@ -1,5 +1,8 @@
 var elUsername=document.getElementById("username");
-var elMsg=document.getElementById("feedback");
+var elPassword=document.getElementById("password");
+var elMsgForUn=document.getElementById("feedback-un");
+var elMsgForPw=document.getElementById("feedback-pw");
+
 
 function checkUsername(username,minLength)
 {
@@ -13,15 +16,47 @@ function checkUsername(username,minLength)
     }
     return msg;
 }
+function checkPassword(password)
+{
+    var msg="";
+    if(password.length<6)
+    {
+        msg+="Password must be "+6+" characters or more...";
+    }
+    else{
+        msg+="";
+    }
+    var num_exist=false,cap_exist=false,low_exist=false;
+    for(var i=0;i<password.length;i++)
+    {
+        if(password[i]>='0'&&password[i]<='9')
+            num_exist=true;
+        else if(password[i]>='a'&&password[i]<='z')
+            low_exist=true;
+        else if(password[i]>='A'&&password[i]<='Z')
+            cap_exist=true;
+    }
+    if(!(num_exist&&cap_exist&&low_exist))
+    {
+        msg+="Password must have uppercase letter, lowercase letter and number at the same time...";
+    }
+    return msg;
+}
 
 if(elUsername.addEventListener)
 {
     elUsername.addEventListener("blur",function(){
-        elMsg.textContent=checkUsername(elUsername.value,5);
+        elMsgForUn.textContent=checkUsername(elUsername.value,5);
     },false);
+    elPassword.addEventListener("blur",function(){
+        elMsgForPw.textContent=checkPassword(elPassword.value);
+    });
 }
 else{
     elUsername.attachEvent("onblur",function(){
-        elMsg.textContent=checkUsername(elUsername.value,5);
+        elMsgForUn.textContent=checkUsername(elUsername.value,5);
     },false);
+    elPassword.attachEvent("onblur",function(){
+        elMsgForPw.textContent=checkPassword(elPassword.value);
+    });
 }
