@@ -7,4 +7,4 @@ Jasmine, Selenium, Browser, TestComplete, Needle are some of the examples of **F
 ## About this homework
 The index.html and js files are homework from a javascript tutorial book. SpecRunner.html is a demo given by Jasmine tutorial and applied to my own code.
 ## How to use
-[index.html](index.html) shows you a front-end application which allows you to enter username and password for a new account. [SpecRunner.html](SpecRunner.html) shows you the result of unit test on function checkUsername(), which warns you when username is less than 5 characters. 
+[index.html](index.html) shows you a front-end application which allows you to enter username and password for a new account. [SpecRunner.html](SpecRunner.html) shows you the result of unit test on function checkUsername(), which warns you when username is less than 5 characters, and when password is less than 6 characters or it does not contain uppercase letter, lowercase letter and number at the same time. 
