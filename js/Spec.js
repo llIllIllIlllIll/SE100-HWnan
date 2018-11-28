@@ -8,10 +8,58 @@ function randomString(len) {
     　　}
     　　return pwd;
     }
-//function used to generate random username
+
+function testBody()
+{   
+    describe("Test existed accounts",function(){
+        beforeAll(async function () { 
+            /*$.getJSON("https://api.myjson.com/bins/17yr1m", function(json) {
+                for(var i=0;i<json.existed_accounts.length;i++)
+                {
+                    data[i]=json.existed_accounts[i];
+                }});
+            */
+                let response = await fetch('https://api.myjson.com/bins/17yr1m');
+                data =await response.json();
+            }
+            
+        );
+    
+    
+        it("Input yx1998",function(){
+            msg=checkUsername("yx1998",5);
+            expect(msg).toBe("Account existed!")
+        });
+    
+        it("Input LeeSee",function(){
+            msg=checkUsername("LeeSee",5);
+            expect(msg).toBe("Account existed!")
+        });
+    
+        it("Input Zhangsan",function(){
+            msg=checkUsername("zhangsan",5);
+            expect(msg).toBe("Account existed!")
+        });
+    });
+
+
 
 describe("Test function checkUsername",function(){
-    for(var i=0;i<100;i++)
+    beforeAll(async function () { 
+        /*$.getJSON("https://api.myjson.com/bins/17yr1m", function(json) {
+            for(var i=0;i<json.existed_accounts.length;i++)
+            {
+                data[i]=json.existed_accounts[i];
+            }});
+        */
+            let response = await fetch('https://api.myjson.com/bins/17yr1m');
+            data =await response.json();
+        }
+        
+    );
+
+
+    for(var i=0;i<50;i++)
     {
         var length=Math.floor(Math.random() * 64);
         //suppose name 64 characters at most
@@ -29,8 +77,9 @@ describe("Test function checkUsername",function(){
     }
     
 });
+
 describe("Test function checkUsername",function(){
-    for(var i=0;i<100;i++)
+    for(var i=0;i<50;i++)
     {
         var length=Math.floor(Math.random() * 64);
         //suppose password 64 characters at most
@@ -55,3 +104,7 @@ describe("Test function checkUsername",function(){
     }
     
 });
+
+}
+
+testBody();

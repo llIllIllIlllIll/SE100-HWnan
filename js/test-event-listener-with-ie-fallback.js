@@ -1,7 +1,28 @@
+var data=[];
+
+function loadData()
+{
+    
+    $.getJSON("https://api.myjson.com/bins/17yr1m", function(json) {
+    for(var i=0;i<json.existed_accounts.length;i++)
+    {
+        data[i]=json.existed_accounts[i];
+    }
+
+});
+}
 
 function checkUsername(username,minLength)
 {
-    var msg;
+    var msg="";
+    for(var i=0;i<data.existed_accounts.length;i++)
+    {
+        if(username==data.existed_accounts[i].username)
+        {
+            msg+="Account existed!";
+            return msg; 
+        }
+    }
     if(username.length<5)
     {
         msg="Username must be "+minLength+" characters or more...";
